@@ -3,6 +3,7 @@ package com.example.moviesexample.data.repository.tmdb
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesexample.data.api.ApiInterface
+import com.example.moviesexample.data.utils.Constants.Companion.API_KEY
 import com.example.moviesexample.domain.models.MoviesDetailsData
 
 
@@ -13,7 +14,7 @@ class MoviePagingSource(private val apiService: ApiInterface) :
 
         return try {
             val position = params.key ?: 1
-            val response = apiService.getPopularMovies(API_KEY, "en-US", position)
+            val response = apiService.getPopularMovies(API_KEY, language = "en-US", position)
             LoadResult.Page(
                 data = response.body()?.results ?: emptyList(),
                 prevKey = if (position == 1) null else position - 1,
@@ -33,4 +34,3 @@ class MoviePagingSource(private val apiService: ApiInterface) :
     }
 
 }
-const val API_KEY = "6e76ecffda0a59dc4f19a343c6e7648a"

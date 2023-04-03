@@ -3,6 +3,8 @@ package com.example.moviesexample.data.repository.tmdb
 import androidx.lifecycle.LiveData
 import androidx.paging.*
 import com.example.moviesexample.data.api.ApiInterface
+import com.example.moviesexample.data.utils.Constants.Companion.API_KEY
+import com.example.moviesexample.data.utils.Constants.Companion.NETWORK_PAGE_SIZE
 import com.example.moviesexample.domain.models.MoviesDetailsData
 import com.example.moviesexample.domain.repository.MoviesApiRepository
 import retrofit2.Response
@@ -30,4 +32,3 @@ class MoviesApiRepositoryImpl @Inject constructor(
 
 }
 
-const val NETWORK_PAGE_SIZE = 25

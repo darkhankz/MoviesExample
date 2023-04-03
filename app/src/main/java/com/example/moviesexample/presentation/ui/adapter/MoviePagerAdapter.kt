@@ -11,7 +11,8 @@ import com.example.moviesexample.domain.models.MoviesDetailsData
 
 
 class MoviePagerAdapter : PagingDataAdapter<MoviesDetailsData, MoviePagerAdapter.MovieViewHolder>(
-    MovieComparator) {
+    MovieComparator
+) {
 
     private var onMovieClickListener: OnMovieClickListener? = null
 
