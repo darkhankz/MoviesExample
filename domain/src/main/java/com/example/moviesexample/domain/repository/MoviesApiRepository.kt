@@ -6,6 +6,6 @@ import com.example.moviesexample.domain.models.MoviesDetailsData
 import retrofit2.Response
 
 interface MoviesApiRepository {
-    fun getAllMovies(): LiveData<PagingData<MoviesDetailsData>>
+    fun getPopularMovies(): LiveData<PagingData<MoviesDetailsData>>
     suspend fun getMoviesDetails(movieId: Int): Response<MoviesDetailsData>
 }

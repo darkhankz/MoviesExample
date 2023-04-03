@@ -9,10 +9,12 @@ import com.example.moviesexample.data.api.ApiInterface
 import com.example.moviesexample.domain.models.MoviesDetailsData
 import com.example.moviesexample.domain.repository.MoviesApiRepository
 import retrofit2.Response
+import javax.inject.Inject
 
-class MoviesApiRepositoryImpl : MoviesApiRepository {
-    private val apiInterface = ApiInterface.create()
-    override fun getAllMovies(): LiveData<PagingData<MoviesDetailsData>> {
+class MoviesApiRepositoryImpl @Inject constructor(
+    private val apiInterface: ApiInterface): MoviesApiRepository {
+
+    override fun getPopularMovies(): LiveData<PagingData<MoviesDetailsData>> {
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
@@ -20,7 +22,7 @@ class MoviesApiRepositoryImpl : MoviesApiRepository {
                 initialLoadSize = 2
             ),
             pagingSourceFactory = {
-                MoviePagingSource(ApiInterface.create())
+                MoviePagingSource(apiInterface)
             }, initialKey = 1
         ).liveData
     }
@@ -29,11 +31,6 @@ class MoviesApiRepositoryImpl : MoviesApiRepository {
         return apiInterface.getMoviesDetails(movieId, API_KEY)
     }
 
-    companion object {
-        fun create(): MoviesApiRepository {
-            return MoviesApiRepositoryImpl()
-        }
-    }
 }
 
 const val NETWORK_PAGE_SIZE = 25

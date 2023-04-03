@@ -1,4 +1,4 @@
-package com.example.moviesexample.ui.adapter
+package com.example.moviesexample.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,8 @@ import com.example.moviesexample.databinding.CardViewDisgnBinding
 import com.example.moviesexample.domain.models.MoviesDetailsData
 
 
-class MoviePagerAdapter : PagingDataAdapter<MoviesDetailsData, MoviePagerAdapter.MovieViewHolder>(MovieComparator) {
+class MoviePagerAdapter : PagingDataAdapter<MoviesDetailsData, MoviePagerAdapter.MovieViewHolder>(
+    MovieComparator) {
 
     private var onMovieClickListener: OnMovieClickListener? = null
 
