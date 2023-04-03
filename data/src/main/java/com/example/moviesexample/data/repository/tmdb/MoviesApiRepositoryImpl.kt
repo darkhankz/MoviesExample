@@ -1,10 +1,7 @@
 package com.example.moviesexample.data.repository.tmdb
 
 import androidx.lifecycle.LiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
+import androidx.paging.*
 import com.example.moviesexample.data.api.ApiInterface
 import com.example.moviesexample.domain.models.MoviesDetailsData
 import com.example.moviesexample.domain.repository.MoviesApiRepository
