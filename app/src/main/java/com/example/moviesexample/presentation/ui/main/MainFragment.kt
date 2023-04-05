@@ -58,7 +58,8 @@ class MainFragment : Fragment() {
             override fun onMovieClick(movieId: Int) {
                 val bundle = bundleOf("movie_id" to movieId)
                 view?.findNavController()?.navigate(
-                    R.id.action_mainFragment_to_detailFragment, bundle)
+                    R.id.action_mainFragment_to_detailFragment, bundle
+                )
             }
         })
     }

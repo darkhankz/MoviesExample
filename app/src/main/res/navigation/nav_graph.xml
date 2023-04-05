@@ -37,5 +37,9 @@
         android:id="@+id/detailFragment"
         android:name="com.example.moviesexample.presentation.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
 </navigation>

@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
 
 
     fun getPopularMovies() {
-        val responseLiveData = getPopularMoviesUseCase.invoke().cachedIn(viewModelScope )
+        val responseLiveData = getPopularMoviesUseCase.invoke().cachedIn(viewModelScope)
         responseLiveData.observeForever { response ->
             Log.d("APIResponse", response.toString())
             _moviesPopular.postValue(response)
@@ -49,9 +49,9 @@ class MainViewModel @Inject constructor(
                 else -> null
             }
             errorState?.let {
-                Log.d("dataCheck", "initLoadState: error=${it.error}")
                 _errorMessage.value = it.error.toString()
             }
         }
     }
+
 }
