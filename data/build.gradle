@@ -43,12 +43,11 @@ dependencies {
 
     implementation project(path: ':domain')
 
-
-
     // Retrofit
     def retrofitVersion = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
     //Paging library
     def paging_version = "3.1.1"
     implementation "androidx.paging:paging-runtime:$paging_version"
@@ -58,5 +57,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
+    //Room
+    def roomVersion = "2.5.1"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
 }

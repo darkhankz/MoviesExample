@@ -6,12 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviesexample.domain.models.MoviesDetailsData
 import com.example.moviesexample.domain.usecase.GetMoviesDetailsUseCase
+import com.example.moviesexample.domain.usecase.room.DeleteMovieUseCase
+import com.example.moviesexample.domain.usecase.room.InsertMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(private val getMoviesDetailsUseCase: GetMoviesDetailsUseCase): ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val getMoviesDetailsUseCase: GetMoviesDetailsUseCase,
+    private val deleteMovieUseCase: DeleteMovieUseCase,
+    private val insertMovieUseCase: InsertMovieUseCase
+) : ViewModel() {
     private val _moviesDetails = MutableLiveData<MoviesDetailsData>()
     val moviesDetails: LiveData<MoviesDetailsData> = _moviesDetails
 
@@ -34,4 +41,18 @@ class DetailViewModel @Inject constructor(private val getMoviesDetailsUseCase: G
             }
         }
     }
+
+    fun insert(moviesData: MoviesDetailsData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            insertMovieUseCase.invoke(moviesData = moviesData)
+        }
+    }
+
+
+    fun delete(moviesData: MoviesDetailsData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteMovieUseCase.invoke(moviesData = moviesData)
+        }
+    }
+
 }

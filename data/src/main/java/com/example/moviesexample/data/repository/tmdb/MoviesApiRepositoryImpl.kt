@@ -11,7 +11,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MoviesApiRepositoryImpl @Inject constructor(
-    private val apiInterface: ApiInterface): MoviesApiRepository {
+    private val apiInterface: ApiInterface
+) : MoviesApiRepository {
 
     override fun getPopularMovies(): LiveData<PagingData<MoviesDetailsData>> {
         return Pager(

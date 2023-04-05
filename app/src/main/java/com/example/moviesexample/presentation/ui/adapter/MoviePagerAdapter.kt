@@ -58,4 +58,5 @@ class MoviePagerAdapter : PagingDataAdapter<MoviesDetailsData, MoviePagerAdapter
     interface OnMovieClickListener {
         fun onMovieClick(movieId: Int)
     }
+
 }
