@@ -48,9 +48,9 @@ class MainFragment : Fragment(), MenuProvider {
 
     private fun initObserver() {
         lifecycleScope.launch {
-            viewModel.moviesPopular.observe(viewLifecycleOwner) {
-                it?.let {
-                    moviesAdapter.submitData(lifecycle, it)
+            viewModel.moviesPopular.observe(viewLifecycleOwner) { movies ->
+                if (movies != null) {
+                    moviesAdapter.submitData(lifecycle, movies)
                 }
             }
         }
