@@ -8,11 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviesexample.R
 import com.example.moviesexample.data.repository.saveshared.SaveShared
 import com.example.moviesexample.databinding.FragmentDetailBinding
 import com.example.moviesexample.domain.models.MoviesDetailsData
+import com.example.moviesexample.presentation.ui.adapter.TrailersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +25,9 @@ class DetailFragment : Fragment() {
     private lateinit var favoriteClick: ImageView
     private var isFavorite = false
 
+    private lateinit var trailersRecyclerView: RecyclerView
+    private lateinit var trailersAdapter: TrailersAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +37,7 @@ class DetailFragment : Fragment() {
         val view = binding.root
         (activity as AppCompatActivity).supportActionBar?.hide()
         favoriteClick = binding.imgDetailFavorite
+        trailersRecyclerView = binding.trailersRecyclerView
         return view
 
     }
@@ -41,7 +47,20 @@ class DetailFragment : Fragment() {
         getMoviesDetails()
         initObservers()
         observeLoadingAndErrors()
+        initObserversTrailers()
 
+
+    }
+
+    private fun initObserversTrailers() {
+        viewModel.apply {
+            movieTrailersLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    trailersAdapter = TrailersAdapter(it)
+                    trailersRecyclerView.adapter = trailersAdapter
+                }
+            }
+        }
     }
 
     private fun updateFavoriteStatus(valueBoolean: Boolean, movieDetails: MoviesDetailsData) {
@@ -49,12 +68,12 @@ class DetailFragment : Fragment() {
             isFavorite = if (isFavorite == valueBoolean) {
                 favoriteClick.setImageResource(R.drawable.ic_favorite_24)
                 SaveShared.setFavorite(context, movieDetails.id.toString(), true)
-                viewModel.insert(movieDetails)
+                viewModel.insert(moviesData = movieDetails)
                 true
             } else {
                 favoriteClick.setImageResource(R.drawable.ic_favorite_border_24)
                 SaveShared.setFavorite(context, movieDetails.id.toString(), false)
-                viewModel.delete(movieDetails)
+                viewModel.delete(moviesData = movieDetails)
                 false
             }
         }
@@ -65,6 +84,7 @@ class DetailFragment : Fragment() {
         val movieId = arguments?.getInt("movie_id")
         if (movieId != null) {
             viewModel.getMoviesDetails(movieId = movieId)
+            viewModel.fetchTrailers(movieId = movieId)
         }
     }
 
