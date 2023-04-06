@@ -1,9 +1,11 @@
 # MoviesApp Kotlin Android App
 
-  <img width="400" height="800" src=github_images/screen%20(1).jpg>
-  <img width="400" height="800" src=github_images/screen%20(2).jpg>
-  <img width="400" height="800" src=github_images/screen%20(3).jpg>
-   
+<img src="https://github.com/darkhankz/MoviesExample/blob/master/github-images/screen%20(1).jpg" align="left"
+width="250" hspace="10" vspace="10">
+  
+<img src="https://github.com/darkhankz/MoviesExample/blob/master/github-images/screen%20(2).jpg" align="left"
+width="250" hspace="10" vspace="10">
+
 MoviesApp is a TMDb mobile add that list movies, shows their details, you can even watch trailers, save movies to list for watch later</br></br></br></br></br></br></br></br></br></br>
 
 ## 🛠 Built With
