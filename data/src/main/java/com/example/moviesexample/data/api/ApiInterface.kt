@@ -27,6 +27,5 @@ interface ApiInterface {
     suspend fun getTrailers(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
-    )
-            : Response<TrailersResponse>
+    ): Response<TrailersResponse>
 }

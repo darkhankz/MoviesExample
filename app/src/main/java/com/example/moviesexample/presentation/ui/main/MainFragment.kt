@@ -1,14 +1,15 @@
 package com.example.moviesexample.presentation.ui.main
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.example.moviesexample.R
@@ -18,10 +19,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), MenuProvider {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private val moviesAdapter = MoviePagerAdapter()
+
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -31,6 +33,7 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.recyclerViewFragment.adapter = moviesAdapter
         val view = binding.root
+        initMenuHost()
         return view
     }
 
@@ -76,6 +79,26 @@ class MainFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun initMenuHost() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.item_favorite -> {
+                view?.findNavController()?.navigate(R.id.action_mainFragment_to_favoriteFragment)
+                true
+            }
+            else -> false
+        }
     }
 
 }
