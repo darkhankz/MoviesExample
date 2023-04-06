@@ -32,8 +32,8 @@ class NetworkModule {
     fun provideArticleDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(
             context,
-            MoviesDatabase::class.java, "movies_database")
-            .build()
+            MoviesDatabase::class.java, "movies_database"
+        ).build()
 
     @Provides
     fun provideMoviesDao(database: MoviesDatabase): MoviesDao {

@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +34,6 @@ class DetailFragment : Fragment() {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        (activity as AppCompatActivity).supportActionBar?.hide()
         favoriteClick = binding.imgDetailFavorite
         trailersRecyclerView = binding.trailersRecyclerView
         return view
@@ -120,11 +118,6 @@ class DetailFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        (activity as? AppCompatActivity)?.supportActionBar?.show()
     }
 
     private fun updateFavoriteButtonImage(movieDetails: MoviesDetailsData): Boolean {

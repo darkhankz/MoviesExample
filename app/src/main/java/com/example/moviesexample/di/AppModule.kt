@@ -60,4 +60,5 @@ class AppModule {
     @Singleton
     fun providesGetFetchTrailersMoviesUseCase(moviesApiRepository: MoviesApiRepository): FetchTrailersUseCase =
         FetchTrailersUseCase(moviesApiRepository = moviesApiRepository)
+
 }

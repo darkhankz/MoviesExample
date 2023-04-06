@@ -2,9 +2,7 @@ package com.example.moviesexample.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.moviesexample.R
@@ -22,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setupNavigation()
+
     }
 
     private fun setupNavigation() {
@@ -30,19 +29,4 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.item_favorite -> {
-                navController.navigate(R.id.action_mainFragment_to_favoriteFragment)
-                true
-            }
-            else -> false
-        }
-    }
 }
