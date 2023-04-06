@@ -6,6 +6,7 @@ import com.example.moviesexample.data.repository.room.RoomRepositoryImpl
 import com.example.moviesexample.data.repository.tmdb.MoviesApiRepositoryImpl
 import com.example.moviesexample.domain.repository.MoviesApiRepository
 import com.example.moviesexample.domain.repository.MoviesRoomRepository
+import com.example.moviesexample.domain.usecase.FetchTrailersUseCase
 import com.example.moviesexample.domain.usecase.GetMoviesDetailsUseCase
 import com.example.moviesexample.domain.usecase.GetPopularMoviesUseCase
 import com.example.moviesexample.domain.usecase.room.DeleteMovieUseCase
@@ -55,5 +56,8 @@ class AppModule {
     fun providesInsertMovieUseCase(moviesRoomRepository: MoviesRoomRepository): InsertMovieUseCase =
         InsertMovieUseCase(moviesRoomRepository = moviesRoomRepository)
 
-
+    @Provides
+    @Singleton
+    fun providesGetFetchTrailersMoviesUseCase(moviesApiRepository: MoviesApiRepository): FetchTrailersUseCase =
+        FetchTrailersUseCase(moviesApiRepository = moviesApiRepository)
 }

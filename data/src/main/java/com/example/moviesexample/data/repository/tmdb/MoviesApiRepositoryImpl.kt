@@ -6,6 +6,7 @@ import com.example.moviesexample.data.api.ApiInterface
 import com.example.moviesexample.data.utils.Constants.Companion.API_KEY
 import com.example.moviesexample.data.utils.Constants.Companion.NETWORK_PAGE_SIZE
 import com.example.moviesexample.domain.models.MoviesDetailsData
+import com.example.moviesexample.domain.models.trailers.TrailersResponse
 import com.example.moviesexample.domain.repository.MoviesApiRepository
 import retrofit2.Response
 import javax.inject.Inject
@@ -28,7 +29,11 @@ class MoviesApiRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMoviesDetails(movieId: Int): Response<MoviesDetailsData> {
-        return apiInterface.getMoviesDetails(movieId, API_KEY)
+        return apiInterface.getMoviesDetails(movieId, apiKey = API_KEY)
+    }
+
+    override suspend fun fetchTrailers(movieId: Int): Response<TrailersResponse> {
+        return apiInterface.getTrailers(movieId = movieId, apiKey = API_KEY)
     }
 
 }
