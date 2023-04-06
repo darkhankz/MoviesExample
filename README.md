@@ -9,6 +9,8 @@ width="250" hspace="10" vspace="10">
 <img src="https://github.com/darkhankz/MoviesExample/blob/master/github-images/screen%20(3).jpg" align="left"
 width="250" hspace="10" vspace="10">
 
+<img src="https://github.com/darkhankz/MoviesExample/blob/master/github-images/screen%20(4).jpg" align="left"
+width="250" hspace="10" vspace="10">
 
 MoviesApp is a TMDb mobile add that list movies, shows their details, you can even watch trailers, save movies to list for watch later</br></br></br></br></br></br></br></br></br></br>
 
