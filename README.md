@@ -14,6 +14,10 @@ width="250" hspace="10" vspace="10">
 
 MoviesApp is a TMDb mobile add that list movies, shows their details, you can even watch trailers, save movies to list for watch later</br></br></br></br></br></br></br></br></br></br>
 
+
+
+
+
 ## 🛠 Built With
 - MVVM with Clean Architecture
 - [Coroutines](https://developer.android.com/kotlin/coroutines)
